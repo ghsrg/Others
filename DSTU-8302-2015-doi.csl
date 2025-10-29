@@ -157,6 +157,7 @@
             </group>
             <text macro="number-of-pages"/>
             <text variable="ISBN" prefix="ISBN "/>
+			<text variable="DOI" prefix=" DOI:"/>
           </group>
         </else-if>
         <else-if type="chapter">
@@ -170,6 +171,7 @@
             </group>
             <text macro="publisher"/>
             <text macro="page"/>
+			<text variable="DOI" prefix=" DOI:"/>
           </group>
         </else-if>
         <else-if type="patent">
@@ -225,6 +227,7 @@
             </group>
             <text macro="number-of-pages"/>
             <text variable="ISBN" prefix="ISBN "/>
+			<text variable="DOI" prefix=" DOI:"/>
           </group>
         </else>
       </choose>
