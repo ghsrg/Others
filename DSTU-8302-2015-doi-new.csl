@@ -4,13 +4,14 @@
     <title>DSTU 8302-2015 (with DOI or URL)</title>
     <id>http://www.zotero.org/styles/dstu-8302-2015-with-doi-url</id>
     <link href="http://www.zotero.org/styles/dstu-8302-2015-with-doi-url" rel="self"/>
+    <link href="http://www.zotero.org/styles/apa" rel="template"/>
     <author>
       <name>Based on Mykhailo Shevchuk, updated by ChatGPT</name>
     </author>
     <category citation-format="numeric"/>
     <summary>DSTU 8302-2015 citation style with DOI or URL fallback.</summary>
     <updated>2025-10-29T12:00:00+02:00</updated>
-    <rights>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 License.</rights>
+    <rights license="http://creativecommons.org/licenses/by-sa/4.0/"/>
   </info>
 
   <locale>
