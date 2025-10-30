@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="uk-UA">
+  <info>
+    <title>DSTU 8302-2015 (with DOI/URL)</title>
+    <id>http://www.zotero.org/styles/dstu-8302-2015-with-doi-url</id>
+    <link href="http://www.zotero.org/styles/dstu-8302-2015-with-doi-url" rel="self"/>
+    <author>
+      <name>Updated by ChatGPT (based on M. Shevchuk original)</name>
+      <email>mail@mshevchuk.com</email>
+      <uri>https://github.com/myshevchuk/dstu-csl</uri>
+    </author>
+    <category citation-format="numeric"/>
+    <summary>DSTU 8302-2015 with mandatory DOI or URL fallback</summary>
+    <updated>2025-10-29</updated>
+    <rights>This work is licensed under a Creative Commons Attribution-Share Alike 4.0 License.</rights>
+  </info>
+
+  <locale>
+    <terms>
+      <term name="editor">ред.</term>
+      <term name="et-al"> та ін.</term>
+      <term name="page" form="short">
+        <single>С. </single>
+        <multiple>С. </multiple>
+      </term>
+      <term name="number-of-pages">
+        <single> с.</single>
+        <multiple> с.</multiple>
+      </term>
+      <term name="volume" form="short">Вип. </term>
+      <term name="issue" form="short">№ </term>
+      <term name="translator" form="short">
+        <single>Пер. </single>
+        <multiple>Пер. </multiple>
+      </term>
+    </terms>
+  </locale>
+
+  <macro name="author-all">
+    <names variable="author reviewed-author" delimiter=", ">
+      <name initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+      <et-al term="et-al"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="volume">
+    <label variable="volume" form="short"/>
+    <text variable="volume"/>
+  </macro>
+
+  <macro name="issue">
+    <label variable="issue" form="short"/>
+    <text variable="issue"/>
+  </macro>
+
+  <macro name="page">
+    <label variable="page" form="short"/>
+    <text variable="page"/>
+  </macro>
+
+  <macro name="doi-url">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix=" DOI:"/>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL" prefix=" URL:"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography hanging-indent="true" second-field-align="margin">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+
+      <choose>
+
+        <!-- Journal article -->
+        <if type="article-journal">
+          <text macro="author-all" suffix=". "/>
+          <text variable="title" suffix=". "/>
+          <group delimiter=". ">
+            <text variable="container-title" font-style="italic"/>
+            <text macro="year"/>
+            <group delimiter=", ">
+              <text macro="volume"/>
+              <text macro="issue"/>
+            </group>
+            <text macro="page"/>
+          </group>
+          <text macro="doi-url"/>
+        </if>
+
+        <!-- Book -->
+        <else-if type="book">
+          <text macro="author-all" suffix=". "/>
+          <text variable="title" font-style="italic" suffix=". "/>
+          <group delimiter=":">
+            <text variable="publisher-place"/>
+            <group delimiter=", ">
+              <text variable="publisher"/>
+              <text macro="year"/>
+            </group>
+          </group>
+          <text variable="number-of-pages" suffix=" с."/>
+          <text macro="doi-url"/>
+        </else-if>
+
+        <!-- Chapter in book -->
+        <else-if type="chapter">
+          <text macro="author-all" suffix=". "/>
+          <text variable="title" suffix=". "/>
+          <group delimiter=". ">
+            <group delimiter=". ">
+              <text variable="container-title" font-style="italic"/>
+              <names variable="editor" prefix=" / " suffix="."/>
+            </group>
+            <group delimiter=":">
+              <text variable="publisher-place"/>
+              <group delimiter=", ">
+                <text variable="publisher"/>
+                <text macro="year"/>
+              </group>
+            </group>
+            <text macro="page"/>
+          </group>
+          <text macro="doi-url"/>
+        </else-if>
+
+        <!-- Thesis -->
+        <else-if type="thesis">
+          <text macro="author-all" suffix=". "/>
+          <text variable="title" suffix=". "/>
+          <text variable="genre" prefix="Дис. " suffix=". "/>
+          <group delimiter=": ">
+            <text variable="publisher"/>
+            <text macro="year"/>
+          </group>
+          <text macro="doi-url"/>
+        </else-if>
+
+        <!-- Conference paper -->
+        <else-if type="paper-conference">
+          <text macro="author-all" suffix=". "/>
+          <text variable="title" suffix=". "/>
+          <text variable="container-title" font-style="italic" prefix="У: " suffix=". "/>
+          <group delimiter=", ">
+            <text variable="publisher"/>
+            <text macro="year"/>
+            <text macro="page"/>
+          </group>
+          <text macro="doi-url"/>
+        </else-if>
+
+        <!-- Web resource / other -->
+        <else>
+          <text macro="author-all" suffix=". "/>
+          <text variable="title" suffix=". "/>
+          <text variable="container-title" font-style="italic" suffix=". "/>
+          <text macro="year"/>
+          <text macro="doi-url"/>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
